@@ -95,12 +95,18 @@ export default class D3TimeSeriesModifier extends Modifier {
   }
 
   createSvg() {
-    d3.select(this.element).style('position', 'relative');
+    d3.select(this.element)
+      .style('position', 'relative')
+      .style('padding-bottom', `${this.d3Config.layout.height / this.d3Config.layout.width * 100}%`); // TODO need to dynamically calc
 
     return d3.select(this.element)
       .append('svg')
-      .attr('width', this.d3Config.layout.width)
-      .attr('height', this.d3Config.layout.height)
+      .style('position', 'absolute')
+      .style('top', '0')
+      .style('left', '0')
+      .style('width', '100%')
+      .attr('preserveAspectRatio', 'xMinYMin meet')
+      .attr('viewBox', `0 0 ${this.d3Config.layout.width} ${this.d3Config.layout.height}`)
       .append('g')
       .attr('transform', `translate(${this.d3Config.layout.margin.left},${this.d3Config.layout.margin.top})`);
   }

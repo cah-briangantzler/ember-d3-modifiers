@@ -16,6 +16,10 @@ body {
   flex-basis: 50%;
 }
 
+.d3-graph {
+  max-width: 1200px;
+}
+
 .d3-graph svg {
   background-color: #f5f2f0;
 }
