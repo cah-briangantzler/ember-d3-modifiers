@@ -1,6 +1,18 @@
 <div class="threshold-lines-demo">
   <div class="d3-graph" {{d3-time-series 
     chartData=this.chartData
-    d3Config=this.d3Config}}>
+    d3Config=this.d3Config
+    thresholds=this.thresholds}}>
+  </div>
+  <div>
+    <input type="text" id="threshold-value" value={{this.thresholdValue}}
+      oninput={{action this.toggleValue value="target.value"}}>
+
+    <label for="threshold-value">Threshold value</label>
+  </div>
+  <div>
+    <input type="checkbox" id="threshold-flag" checked={{this.thresholdFlag}}
+      onclick={{action this.toggleFlag value="target.checked"}}>
+    <label for="threshold-flag">Threshold flag</label>
   </div>
 </div>

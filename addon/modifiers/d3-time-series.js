@@ -21,6 +21,8 @@ export default class D3TimeSeriesModifier extends Modifier {
    * The data structure should have three properties: seriesId, date, and value */
   @tracked chartData = this.args.named.chartData;
 
+  @tracked thresholds = this.args.named.thresholds;
+
   /** @member {object} The configuration settings to drive how the chart data should be rendered */
   get d3Config() {
     return !this.args.named.d3Config ? new D3TimeSeriesConfig() : this.args.named.d3Config;
@@ -116,8 +118,8 @@ export default class D3TimeSeriesModifier extends Modifier {
 
   thresholdLines(minDate, maxDate) {
     let thresholdSeriesData = [];
-    if (this.d3Config.thresholds && this.d3Config.thresholds.length > 0) {
-      this.d3Config.thresholds.forEach(threshold => {
+    if (this.thresholds && this.thresholds.length > 0) {
+      this.thresholds.forEach(threshold => {
         let thresholdData =
           [
             {
@@ -172,7 +174,7 @@ export default class D3TimeSeriesModifier extends Modifier {
   renderThresholdLines(thresholdSeriesData) {
     if (thresholdSeriesData.length > 0) {
       thresholdSeriesData.forEach(thresholdData => {
-        const thresholdConfig = this.d3Config.thresholds.find(threshold => threshold.thresholdId === thresholdData[0].seriesId);
+        const thresholdConfig = this.thresholds.find(threshold => threshold.thresholdId === thresholdData[0].seriesId);
         const classNamesToApply = thresholdConfig.className ? `${dasherize(thresholdData[0].seriesId)} ${thresholdConfig.className}` : `${dasherize(thresholdData[0].seriesId)}`;
         this.svgElement.append('path')
           .datum(thresholdData)
