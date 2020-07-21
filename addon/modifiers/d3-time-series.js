@@ -45,6 +45,9 @@ export default class D3TimeSeriesModifier extends Modifier {
   @tracked allDateValues = [];
 
   loadD3Chart() {
+    if (this.svgElement) {
+      this.svgElement.remove();
+    }
     this.svgElement = this.createSvg();
     this.d3LegendRenderer.d3SvgElement = this.svgElement;
 
