@@ -23,7 +23,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@glimmer/tracking": "^1.0.1",
+    "@glimmer/tracking": "^1.0.0",
     "d3": "^5.16.0",
     "ember-auto-import": "^1.6.0",
     "ember-cli-babel": "^7.21.0",
